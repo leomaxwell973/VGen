@@ -348,7 +348,7 @@ def worker(gpu, cfg):
                 if cfg.train_adapter:
                     local_model_path = osp.join(cfg.log_dir, f'checkpoints/adapter_{step:08d}.pth')
                     logging.info(f'Begin to Save model to {local_model_path}')
-                    trainable_dict = {name: param for name, param in model.module.named_parameters() if param.requires_grad}
+                    trainable_dict = {name: param for name, param in model.named_parameters() if param.requires_grad}
                     save_dict = {
                         'state_dict': trainable_dict,
                         'step': step}
